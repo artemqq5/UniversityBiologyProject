@@ -1,8 +1,17 @@
 import cell_model.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
-suspend fun main(): Unit = coroutineScope {
+suspend fun main() {
+    try {
+        mainDo()
+    } catch (e: Exception) {
+        println("program was crush with exception: $e")
+    }
+}
+
+suspend fun mainDo(): Unit = coroutineScope {
 
     val exampleCell = CellImpl(
         core = CoreOfCell(),
@@ -17,7 +26,7 @@ suspend fun main(): Unit = coroutineScope {
     println("Введіть кількість поділів для клітини: ")
     val input = readLine()
 
-    launch {
+    launch(Dispatchers.Default) {
         val listOfCell = exampleCell.cellDivision(input!!.toInt(), arrayOf(exampleCell))
 
         for (i in listOfCell.indices) {
@@ -26,6 +35,4 @@ suspend fun main(): Unit = coroutineScope {
 
         println("\n\nУсього у резальтаті ${input}-разового поділу клітин = ${listOfCell.size}")
     }
-
-
 }
