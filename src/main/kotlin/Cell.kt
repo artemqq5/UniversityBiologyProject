@@ -1,5 +1,6 @@
 import cell_model.*
 
+// Абстракція клітини з методом поділу
 abstract class Cell(
     val core: CoreOfCell,
     val cytoplasm: Cytoplasm,

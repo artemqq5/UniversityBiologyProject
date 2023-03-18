@@ -1,5 +1,6 @@
 import cell_model.*
 
+// Реалізація абстракції
 class CellImpl(
     core: CoreOfCell,
     cytoplasm: Cytoplasm,
@@ -27,6 +28,19 @@ class CellImpl(
         celModel.lysosome,
         celModel.mitochondria,
     )
+
+    override fun toString(): String {
+        return "Клітина(${super.toString().replace("CellImpl@", "")}) || " +
+                "Ядро(${this.core.toString().replace("cell_model.CoreOfCell@", "")}), " +
+                "Цитоплазма(${this.cytoplasm.toString().replace("cell_model.Cytoplasm@", "")}), " +
+                "Клітинний центр(${this.cellularCenter.toString().replace("cell_model.CellularCenter@", "")}), " +
+                "Ендоплазматична сітка(${
+                    this.endoplasmicReticulum.toString().replace("cell_model.EndoplasmicReticulum@", "")
+                }), " +
+                "Апарат Гольджі(${this.golgiApparatus.toString().replace("cell_model.GolgiApparatus@", "")}), " +
+                "Лізосома(${this.lysosome.toString().replace("cell_model.Lysosome@", "")}), " +
+                "Мітохондрія(${this.mitochondria.toString().replace("cell_model.Mitochondria@", "")}), "
+    }
 
     override fun cellDivision(count: Int, array: Array<Cell>): Array<Cell> {
 
